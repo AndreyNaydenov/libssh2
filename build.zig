@@ -54,41 +54,41 @@ pub fn build(b: *std.Build) void {
     });
     lib.installHeader(b.path("config/libssh2_config.h"), "libssh2_config.h");
     lib.installHeadersDirectory(libssh2_dep.path("include"), ".", .{});
-    lib.defineCMacro("LIBSSH2_MBEDTLS", null);
+    lib.root_module.addCMacro("LIBSSH2_MBEDTLS", "");
 
     if (target.result.os.tag == .windows) {
-        lib.defineCMacro("_CRT_SECURE_NO_DEPRECATE", "1");
-        lib.defineCMacro("HAVE_LIBCRYPT32", null);
-        lib.defineCMacro("HAVE_WINSOCK2_H", null);
-        lib.defineCMacro("HAVE_IOCTLSOCKET", null);
-        lib.defineCMacro("HAVE_SELECT", null);
-        lib.defineCMacro("LIBSSH2_DH_GEX_NEW", "1");
+        lib.root_module.addCMacro("_CRT_SECURE_NO_DEPRECATE", "1");
+        lib.root_module.addCMacro("HAVE_LIBCRYPT32", "");
+        lib.root_module.addCMacro("HAVE_WINSOCK2_H", "");
+        lib.root_module.addCMacro("HAVE_IOCTLSOCKET", "");
+        lib.root_module.addCMacro("HAVE_SELECT", "");
+        lib.root_module.addCMacro("LIBSSH2_DH_GEX_NEW", "1");
 
         if (target.result.isGnu()) {
-            lib.defineCMacro("HAVE_UNISTD_H", null);
-            lib.defineCMacro("HAVE_INTTYPES_H", null);
-            lib.defineCMacro("HAVE_SYS_TIME_H", null);
-            lib.defineCMacro("HAVE_GETTIMEOFDAY", null);
+            lib.root_module.addCMacro("HAVE_UNISTD_H", "");
+            lib.root_module.addCMacro("HAVE_INTTYPES_H", "");
+            lib.root_module.addCMacro("HAVE_SYS_TIME_H", "");
+            lib.root_module.addCMacro("HAVE_GETTIMEOFDAY", "");
         }
     } else {
-        lib.defineCMacro("HAVE_UNISTD_H", null);
-        lib.defineCMacro("HAVE_INTTYPES_H", null);
-        lib.defineCMacro("HAVE_STDLIB_H", null);
-        lib.defineCMacro("HAVE_SYS_SELECT_H", null);
-        lib.defineCMacro("HAVE_SYS_UIO_H", null);
-        lib.defineCMacro("HAVE_SYS_SOCKET_H", null);
-        lib.defineCMacro("HAVE_SYS_IOCTL_H", null);
-        lib.defineCMacro("HAVE_SYS_TIME_H", null);
-        lib.defineCMacro("HAVE_SYS_UN_H", null);
-        lib.defineCMacro("HAVE_LONGLONG", null);
-        lib.defineCMacro("HAVE_GETTIMEOFDAY", null);
-        lib.defineCMacro("HAVE_INET_ADDR", null);
-        lib.defineCMacro("HAVE_POLL", null);
-        lib.defineCMacro("HAVE_SELECT", null);
-        lib.defineCMacro("HAVE_SOCKET", null);
-        lib.defineCMacro("HAVE_STRTOLL", null);
-        lib.defineCMacro("HAVE_SNPRINTF", null);
-        lib.defineCMacro("HAVE_O_NONBLOCK", null);
+        lib.root_module.addCMacro("HAVE_UNISTD_H", "");
+        lib.root_module.addCMacro("HAVE_INTTYPES_H", "");
+        lib.root_module.addCMacro("HAVE_STDLIB_H", "");
+        lib.root_module.addCMacro("HAVE_SYS_SELECT_H", "");
+        lib.root_module.addCMacro("HAVE_SYS_UIO_H", "");
+        lib.root_module.addCMacro("HAVE_SYS_SOCKET_H", "");
+        lib.root_module.addCMacro("HAVE_SYS_IOCTL_H", "");
+        lib.root_module.addCMacro("HAVE_SYS_TIME_H", "");
+        lib.root_module.addCMacro("HAVE_SYS_UN_H", "");
+        lib.root_module.addCMacro("HAVE_LONGLONG", "");
+        lib.root_module.addCMacro("HAVE_GETTIMEOFDAY", "");
+        lib.root_module.addCMacro("HAVE_INET_ADDR", "");
+        lib.root_module.addCMacro("HAVE_POLL", "");
+        lib.root_module.addCMacro("HAVE_SELECT", "");
+        lib.root_module.addCMacro("HAVE_SOCKET", "");
+        lib.root_module.addCMacro("HAVE_STRTOLL", "");
+        lib.root_module.addCMacro("HAVE_SNPRINTF", "");
+        lib.root_module.addCMacro("HAVE_O_NONBLOCK", "");
     }
 
     b.installArtifact(lib);
