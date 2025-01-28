@@ -21,6 +21,7 @@ pub fn build(b: *std.Build) void {
         .link_libc = true,
     });
     lib.addIncludePath(libssh2_dep.path("include"));
+    lib.addIncludePath(libssh2_dep.path("src"));
     lib.linkLibrary(mbedtls_dep.artifact("mbedtls"));
     lib.addCSourceFiles(.{
         .root = libssh2_dep.path("src"),
